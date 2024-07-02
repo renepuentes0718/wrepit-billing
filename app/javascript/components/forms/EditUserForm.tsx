@@ -1,0 +1,138 @@
+import React, { useEffect } from 'react'
+import { useFormikContext } from 'formik'
+import {
+  Button,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+} from '@mui/material'
+import { User } from '../interface/index'
+
+
+
+
+export default function EditUserForm({ initialValues }): JSX.Element {
+  const {
+    setValues,
+    setFieldValue,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    touched,
+    values,
+  } = useFormikContext<User>()
+
+  useEffect(() => {
+    // this step is neccessary to provide good user experience 
+    setValues(initialValues)
+  }, [])
+
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor='firstname'>First Name*</InputLabel>
+            <OutlinedInput
+              id='firstName'
+              type='firstName'
+              value={values.firstName}
+              name='firstName'
+              onBlur={handleBlur}
+              onChange={(e) => { setFieldValue('firstName', e.target.value) }}
+              fullWidth
+              error={Boolean(touched.firstName && errors.firstName)}
+              placeholder='First Name'
+            />
+          </Stack>
+          {touched.firstName && typeof errors.firstName === 'string' && (
+            <FormHelperText error id='helper-text-firstname-signup'>{errors.firstName}</FormHelperText>
+          )}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor='lastName'>Last Name*</InputLabel>
+            <OutlinedInput
+              fullWidth
+              error={Boolean(touched.lastName && errors.lastName)}
+              id='lastName'
+              type='lastName'
+              value={values.lastName}
+              name='lastName'
+              onBlur={handleBlur}
+              onChange={handleChange}
+              placeholder='Last Name'
+            />
+          </Stack>
+          {touched.lastName && typeof errors.lastName === 'string' && (
+            <FormHelperText error id='helper-text-lastname-signup'>
+              {errors.lastName}
+            </FormHelperText>
+          )}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor='email'>Email Address*</InputLabel>
+            <OutlinedInput
+              fullWidth
+              error={Boolean(touched.email && errors.email)}
+              id='email'
+              type='email'
+              value={values.email}
+              name='email'
+              onBlur={handleBlur}
+              onChange={handleChange}
+              placeholder='Email'
+            />
+          </Stack>
+          {touched.email && typeof errors.email === 'string' && (
+            <FormHelperText error id='helper-text-email-signup'>
+              {errors.email}
+            </FormHelperText>
+          )}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor='email'>Phone</InputLabel>
+            <OutlinedInput
+              fullWidth
+              error={Boolean(touched.phone && errors.phone)}
+              id='phone'
+              type='phone'
+              value={values.phone}
+              name='phone'
+              onBlur={handleBlur}
+              onChange={handleChange}
+              placeholder='Phone Number'
+            />
+          </Stack>
+          {touched.phone && typeof errors.phone === 'string' && (
+            <FormHelperText error id='helper-text-phone-signup'>
+              {errors.phone}
+            </FormHelperText>
+          )}
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            disableElevation
+            fullWidth
+            // disabled={isSU}
+            size='large'
+            type='submit'
+            variant='contained'
+            sx={{
+              background: '#5bbff1',
+              color: '#FFF'
+            }}
+          >
+            Update Account
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
+  )
+}
