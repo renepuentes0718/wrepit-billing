@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Jwt
   class Encoder
     def initialize(payload)

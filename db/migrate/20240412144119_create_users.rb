@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table(:users) do |t|
-
       ## Database authenticatable
       t.string :password_digest, null: false, default: ''
 
@@ -17,7 +18,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string   :unconfirmed_email
 
       # Lockable
-      t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
+      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
@@ -25,7 +26,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :last_name
       t.string :first_name
       t.string :email
-      t.integer :role, default: 0, :null => false
+      t.integer :role, default: 0, null: false
 
       ## Tokens
       t.json :tokens

@@ -6,7 +6,7 @@ import Banner from '../shared/Banner'
 import { Box } from '@mui/material'
 import FileUploadForm from '../forms/ImageUploadForm'
 import { useMutation } from '@apollo/client'
-import { UPLOAD_IMAGE } from '../api/mutations'
+// import { UPLOAD_IMAGE } from '../api/mutations'
 
 
 const initialValue = {
@@ -37,31 +37,33 @@ export default function ImageUploadModal(): JSX.Element {
   const [message, setMessage] = useState('')
   const [severity, setSeverity] = useState(null)
 
-  const [uploadImage, { loading }] = useMutation(UPLOAD_IMAGE, {
-    onCompleted: (data) => {
-      if (!!data) {
-        setSeverity('success')
-        setMessage('Account was created successfully, a confirmation link was sent to your email')
-      }
-    },
-    onError: () => {
-      setSeverity('error')
-      setMessage('Sorry, account creation was unsuccessful')
-    }
-  })
+  //  TODO: AFTER LAST MILESTONE
+
+  // const [uploadImage, { loading }] = useMutation(UPLOAD_IMAGE, {
+  //   onCompleted: (data) => {
+  //     if (!!data) {
+  //       setSeverity('success')
+  //       setMessage('Account was created successfully, a confirmation link was sent to your email')
+  //     }
+  //   },
+  //   onError: () => {
+  //     setSeverity('error')
+  //     setMessage('Sorry, account creation was unsuccessful')
+  //   }
+  // })
 
   const handleSubmit = (event) => {
 
-    const formData = new FormData()
-    formData.append('image', event.image)
+    // const formData = new FormData()
+    // formData.append('image', event.image)
 
     // console.log(formData)
 
-    uploadImage({
-      variables: {
-        image: formData
-      }
-    })
+    // uploadImage({
+    //   variables: {
+    //     image: formData
+    //   }
+    // })
   }
 
   return (

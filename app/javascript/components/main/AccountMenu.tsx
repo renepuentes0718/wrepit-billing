@@ -38,7 +38,6 @@ export default function AccountMenu(): JSX.Element {
   const redirectToProfile = (): void => window.location.replace('/profile')
 
   if (loading) return <Loading />
-  if (!loading) console.log(data)
   return (
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', position: 'relative', top: '-10px' }}>

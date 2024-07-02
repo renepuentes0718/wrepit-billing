@@ -11,8 +11,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
 
     context = {
-      current_user: current_user,
-      session: session,
+      current_user:,
+      session:,
       pundit: self
     }
 
@@ -50,7 +50,7 @@ class GraphqlController < ApplicationController
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
-    render json:   { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} },
+    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} },
            status: :internal_server_error
   end
 end

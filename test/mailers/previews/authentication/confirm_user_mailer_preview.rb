@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'factory_bot_rails'
 
 # Email preview url: http://localhost:5000/rails/mailers/confirm_user_mailer/welcome

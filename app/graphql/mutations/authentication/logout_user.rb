@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# TODO: Find the ideal way to mutate without passing an argument gql
 module Mutations
   module Authentication
     class LogoutUser < BaseMutation

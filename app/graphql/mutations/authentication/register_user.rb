@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module Authentication
     class RegisterUser < BaseMutation
@@ -10,12 +12,12 @@ module Mutations
       # rubocop:disable Metrics/AbcSize
       def resolve(**args)
         user = User.new(
-          unconfirmed_email:    args[:email],
-          password:             args[:password],
-          last_name:            args[:last_name],
-          first_name:           args[:first_name],
-          phone:                args[:phone],
-          confirmation_token:   Jwt::Encoder.new(args[:email]).call,
+          unconfirmed_email: args[:email],
+          password: args[:password],
+          last_name: args[:last_name],
+          first_name: args[:first_name],
+          phone: args[:phone],
+          confirmation_token: Jwt::Encoder.new(args[:email]).call,
           confirmation_sent_at: Time.zone.now
         )
         user.save

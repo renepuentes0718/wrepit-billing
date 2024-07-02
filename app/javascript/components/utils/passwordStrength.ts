@@ -1,18 +1,11 @@
 import { Strength } from "../interface"
-/**
- * Password validator for login pages
- */
 
-// has number
 const hasNumber = (character: string): boolean => new RegExp(/[0-9]/).test(character)
 
-// has mix of small and capitals
 const hasMixed = (character: string): boolean => new RegExp(/[a-z]/).test(character) && new RegExp(/[A-Z]/).test(character)
 
-// has special chars
 const hasSpecial = (character: string): boolean => new RegExp(/[!#@$%^&*)(+=._-]/).test(character)
 
-// set color based on password strength
 export const strengthColor = (count: number): Strength => {
   if (count < 2) return { label: 'Poor', color: 'error.main' }
   if (count < 3) return { label: 'Weak', color: 'warning.main' }
@@ -22,7 +15,6 @@ export const strengthColor = (count: number): Strength => {
   return { label: 'Poor', color: 'error.main' }
 }
 
-// password strength indicator
 export const strengthIndicator = (character: string): number => {
   let strengths = 0
   if (character.length > 5) strengths += 1

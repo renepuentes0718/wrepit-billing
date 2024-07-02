@@ -1,24 +1,57 @@
-# README
+This is an ongoing project likely to have a lot iterations. In the meantime here is a brief description for those who intend to navigate around this project.
+## Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This small part of many parts to come. here we designed an authentication system and a profile page.
 
-Things you may want to cover:
+## Technologies
 
-* Ruby version
+- Ruby on rails
+- GraphQL
+- RSpec
 
-* System dependencies
+## Features
+render my profile and Authentication pages
 
-* Configuration
+## Usage
+To a sub component of WREPIT's appplication
 
-* Database creation
+> Clone the repository to your local machine if invited
 
-* Database initialization
+```sh
+$ https://github.com/renepuentes0718/wrepit-billing
+```
+> cd into the directory
 
-* How to run the test suite
+```sh
+$ bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+$ yarn install
+```
 
-* Deployment instructions
+```sh
+$ rails db:create
+```
 
-* ...
+```sh
+$ rails db:migrate
+```
+
+```sh
+$ rails db:seed
+```
+
+```sh
+$ rails s
+```
+
+```sh
+$ bin/webpack-dev-server
+```
+Access graphiql from the endpoint
+
+```sh
+$ http://localhost:{PORT_NUMBER}/graphiql
+```
+Our current config default port is PORT:5000 do not forget to modify it if you choose to run on a different port

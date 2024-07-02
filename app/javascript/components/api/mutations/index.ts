@@ -1,15 +1,9 @@
 import { gql } from '@apollo/client'
 
 export const FORGOT_PASSWORD = gql`
-mutation ForgotPassword(
-  $email: String!,
-) {
-  forgotPassword(
-    input: {
-      email: $email,
-    }
-  ){
-    email
+mutation ForgotPassword($email: String!) {
+  forgotPassword(input: {email: $email}){
+  id
   }
 }
 `;
@@ -90,13 +84,14 @@ mutation LogoutUser(
 }
 `;
 
-export const UPLOAD_IMAGE = gql`
-  mutation UploadImage($image: Upload!) {
-    uploadImage(image: $image) {
-      user {
-        id
-        imageUrl
-      }
-    }
-  }
-`;
+// TODO: after all milestone 
+// export const UPLOAD_IMAGE = gql`
+//   mutation UploadImage($image: Upload!) {
+//     uploadImage(image: $image) {
+//       user {
+//         id
+//         imageUrl
+//       }
+//     }
+//   }
+// `;

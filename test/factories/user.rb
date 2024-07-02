@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user do
     first_name { Faker::Name.first_name }
@@ -27,7 +29,7 @@ FactoryBot.define do
       reset_password_token { Jwt::Encoder.new(email).call }
       confirmation_sent_at { Time.zone.now }
     end
-    trait :with_image_attached do 
+    trait :with_image_attached do
       image { Faker::LoremFlickr.image }
     end
   end

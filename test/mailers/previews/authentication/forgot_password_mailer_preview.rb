@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'factory_bot_rails'
 
 # preview email: http://localhost:5000/rails/mailers/authentication/forgot_password_mailer/change_password_request

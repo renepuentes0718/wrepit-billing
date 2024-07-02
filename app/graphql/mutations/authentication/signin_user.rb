@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module Authentication
     class SigninUser < BaseMutation
@@ -25,7 +27,7 @@ module Mutations
       def lock_user(user)
         user.update(
           unlock_token: Jwt::Encoder.new(user.email).call,
-          locked_at:    Time.zone.now
+          locked_at: Time.zone.now
         )
 
         ::Authentication::UserAccountMailer.with(user:).unlock_account.deliver_later
