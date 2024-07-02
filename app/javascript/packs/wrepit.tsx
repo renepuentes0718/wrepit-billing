@@ -10,19 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const rootElement = document.getElementById('root')
   const root = createRoot(rootElement)
 
-  // Function to get CSRF token from meta tag
   const getCsrfToken = () => {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   }
 
-  // Create an upload link
+
   const uploadLink = createUploadLink({
+    // For development purpose only, make sure you change this if you don't want to run on our chosen default port
     uri: 'http://localhost:5000/graphql',
   })
 
-  // Create a middleware link to set the headers
   const authLink = setContext((_, { headers }) => {
-    // Get the csrf token
     const csrfToken = getCsrfToken()
     return {
       headers: {

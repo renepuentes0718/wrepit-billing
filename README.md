@@ -7,12 +7,14 @@ This small part of many parts to come. here we designed an authentication system
 
 - Ruby on rails
 - GraphQL
-- RSpec
+- REACT
+- TSC
 
 ## Features
 render my profile and Authentication pages
 
 ## Usage
+
 To a sub component of WREPIT's appplication
 
 > Clone the repository to your local machine if invited
@@ -55,3 +57,17 @@ Access graphiql from the endpoint
 $ http://localhost:{PORT_NUMBER}/graphiql
 ```
 Our current config default port is PORT:5000 do not forget to modify it if you choose to run on a different port
+
+#Outstanding MILESTONE TO COMPLETE
+
+- OMNIAUTH integration
+
+- Omniauth integration
+
+- SMS verification
+
+- General application interconnetion
+
+- File upload(delayed due lack of clarity as to hoq gql deals with files)
+
+- Testing
