@@ -9,6 +9,7 @@ module Types
     field :reset_password, Types::UserType, null: false, mutation: Mutations::Authentication::ResetPassword
     field :forgot_password, Types::UserType, null: false, mutation: Mutations::Authentication::ForgotPassword
     field :logout_user, Types::UserType, null: false, mutation: Mutations::Authentication::LogoutUser
+    field :google_auth, mutation: Mutations::Authentication::GoogleAuth
     # Logged-in User related mutations
     field :update_user, Types::UserType, null: false, mutation: Mutations::CurrentUser::UpdateUser
     # field :upload_image, mutation: Mutations::CurrentUser::UploadImage TODO: After all milestones

@@ -13,7 +13,7 @@ module Mutations
 
         user.update(
           password:,
-          reset_password_token: '',
+          reset_password_token:  '',
           allow_password_change: false
         )
         user
