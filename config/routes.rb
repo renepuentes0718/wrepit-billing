@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'wrepits#index'
   match '*path', to: 'wrepits#index', via: :all
 
-  get "/auth/:provider/callback", to: "sessions#create"
+  # For Omniauth authentication 
+  get "/auth/:provider/callback", to: "sessions#create" 
   get "/auth/failure", to: redirect('/log_in')
 end

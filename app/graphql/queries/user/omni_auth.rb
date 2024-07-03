@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Mutations
-  module Authentication
-    class GoogleAuth < BaseMutation
+module Queries
+  module User
+    class OmniAuth < BaseMutation
       argument :provider, String, required: true
       argument :uid, String, required: true
 

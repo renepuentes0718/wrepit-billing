@@ -12,3 +12,13 @@ query CurrentUser {
   }
 }
 `;
+
+// export const CURRENT_OMNI_AUTH_USER = gql`
+// mutation GoogleAuth ($uid: String!, $provider: String!){
+//   googleAuth(input: {uid: $uid, provider: $provider}){
+//     user{
+//       email
+//     }
+//   }
+// }
+// `;

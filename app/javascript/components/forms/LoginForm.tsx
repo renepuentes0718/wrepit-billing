@@ -162,7 +162,8 @@ export default function LoginForm(): JSX.Element {
                   type='submit'
                   variant='contained'
                   sx={{
-                    color: '#5bbff1'
+                    background: '#5bbff1',
+                    color: '#FFF'
                   }}
                 >
                   Login

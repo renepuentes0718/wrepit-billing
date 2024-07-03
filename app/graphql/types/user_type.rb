@@ -25,5 +25,16 @@ module Types
     field :phone, String
     field :provider, String
     field :uid, String
+    field :image_url, String, null: true
+    field :full_name, String, null: true
+
+    def image_url
+      return unless object.image.attached?
+
+      Rails.application.routes.url_helpers.rails_blob_url(object.image,
+                                                          only_path: true)
+    end
+
+    delegate :full_name, to: :object
   end
 end
