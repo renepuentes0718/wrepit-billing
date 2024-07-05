@@ -9,8 +9,8 @@ import {
   Stack,
 } from '@mui/material'
 import { User } from '../interface/index'
-
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 export default function EditUserForm({ initialValues }): JSX.Element {
@@ -96,17 +96,21 @@ export default function EditUserForm({ initialValues }): JSX.Element {
         </Grid>
         <Grid item xs={12} md={6}>
           <Stack spacing={1}>
-            <InputLabel htmlFor='email'>Phone</InputLabel>
-            <OutlinedInput
-              fullWidth
-              error={Boolean(touched.phone && errors.phone)}
-              id='phone'
-              type='phone'
+            <InputLabel htmlFor='email'>Phone*</InputLabel>
+            <PhoneInput
+              country={'us'}
+              regions={['north-america']}
               value={values.phone}
-              name='phone'
-              onBlur={handleBlur}
               onChange={handleChange}
-              placeholder='Phone Number'
+              containerStyle={{ flex: 1 }}
+              inputStyle={{ width: '100%', height: '56px' }}
+              onBlur={handleBlur}
+              isValid={!Boolean(touched.phone && errors.phone)}
+              inputProps={{
+                name: 'phone',
+                id: 'phone',
+                require: true
+              }}
             />
           </Stack>
           {touched.phone && typeof errors.phone === 'string' && (

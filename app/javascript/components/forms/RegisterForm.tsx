@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Formik } from 'formik'
 import EyeOutlined from '@ant-design/icons/EyeOutlined'
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined'
@@ -22,6 +22,8 @@ import Banner from '../shared/Banner'
 import Omniauth from '../shared/OmniAuth'
 import { User } from '../interface/index'
 import { REGISTER_USER, SEND_VERIFICATION_CODE } from '../api/mutations'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const initialValues = {
   firstName: '',
@@ -52,7 +54,6 @@ export default function UserForm(): JSX.Element {
     }
   })
 
-
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }
@@ -67,7 +68,10 @@ export default function UserForm(): JSX.Element {
   }
 
   const handleSubmit = (event: User): void => {
+
     sendVerificationCode({ variables: { phone: event.phone } })
+    // on click submit  verify phone number
+    // after verification of phone number submit registration
     register({
       variables: {
         firstName: event.firstName,
@@ -153,17 +157,21 @@ export default function UserForm(): JSX.Element {
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor='email'>Phone</InputLabel>
-                  <OutlinedInput
-                    fullWidth
-                    error={Boolean(touched.phone && errors.phone)}
-                    id='phone'
-                    type='phone'
+                  <InputLabel htmlFor='email'>Phone*</InputLabel>
+                  <PhoneInput
+                    country={'us'}
+                    regions={['north-america']}
                     value={values.phone}
-                    name='phone'
-                    onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder='Phone Number'
+                    containerStyle={{ flex: 1 }}
+                    inputStyle={{ width: '100%', height: '56px' }}
+                    onBlur={handleBlur}
+                    isValid={!Boolean(touched.phone && errors.phone)}
+                    inputProps={{
+                      name: 'phone',
+                      id: 'phone',
+                      require: true
+                    }}
                   />
                 </Stack>
                 {touched.phone && typeof errors.phone === 'string' && (
