@@ -19,7 +19,7 @@ interface CodeProps {
   code: number
 }
 
-export default function ForgotPasswordForm(): JSX.Element {
+export default function VerifyCodeForm(): JSX.Element {
 
   const [message, setMessage] = useState('')
   const [severity, setSeverity] = useState(null)

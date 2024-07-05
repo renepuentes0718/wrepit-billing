@@ -62,6 +62,6 @@ Our current config default port is PORT:5000 do not forget to modify it if you c
 
 - SMS verification
 
-- File upload(delayed due lack of clarity as to hoq gql deals with files)
+- File upload
 
 - Testing
