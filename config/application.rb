@@ -20,6 +20,8 @@ module Wrepit
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     # config.action_cable.mount_path = '/cable'
-    config.middleware.use ApolloUploadServer::Middleware
+    # config.middleware.use ApolloUploadServer::Middleware
+    # TODO: CSRF token fails when set to true even when set at the controller level. Further investigations needed for this
+    config.action_controller.allow_forgery_protection = false
   end
 end

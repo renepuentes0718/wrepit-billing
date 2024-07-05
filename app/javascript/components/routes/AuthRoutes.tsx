@@ -16,6 +16,18 @@ const LoginRoutes = {
       element: <Register />
     },
     {
+      path: '/unlock_account/?token=:token',
+      element: <ResetPassword />
+    },
+    {
+      path: '/unlock_account',
+      element: <ResetPassword />
+    },
+    {
+      path: '/reset_password/reset/?token=:token',
+      element: <ResetPassword />
+    },
+    {
       path: '/reset_password',
       element: <ResetPassword />
     },

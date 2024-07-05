@@ -3,7 +3,6 @@
 module Types
   class QueryType < Types::BaseObject
     # User related queries
-    field :current_user, resolver: Queries::User::CurrentUser
-    field :omni_auth, resolver: Queries::User::OmniAuth
+    field :current_user, UserType, resolver: Queries::User::CurrentUser
   end
 end

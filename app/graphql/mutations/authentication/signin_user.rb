@@ -26,8 +26,8 @@ module Mutations
 
       def lock_user(user)
         user.update(
-          unlock_token: Jwt::Encoder.new(user.email).call,
-          locked_at:    Time.zone.now
+          reset_password_token: Jwt::Encoder.new(user.email).call,
+          locked_at:            Time.zone.now
         )
 
         ::Authentication::UserAccountMailer.with(user:).unlock_account.deliver_later
@@ -35,8 +35,8 @@ module Mutations
               'Account has been block, a message has been sent to your email for recovery of account'
       end
 
-      def unlock_lock_email(unlock_token:)
-        email = Jwt::Decoder.new(unlock_token).call[:result]
+      def unlock_lock_email(reset_password_token:)
+        email = Jwt::Decoder.new(reset_password_token).call[:result]
         user = User.find_by(email:)
         raise GraphQL::ExecutionError, 'Invalid email' if user.nil?
 

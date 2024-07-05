@@ -12,6 +12,7 @@ module Mutations
 
         raise GraphQL::ExecutionError, 'Email not found' if user.nil?
 
+        context[:session][:user_id] = user.id
         user.update(
           email:,
           confirmed_at: Time.zone.now

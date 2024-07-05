@@ -8,6 +8,10 @@ const MainRoutes = {
   element: <MinimalLayout />,
   children: [
     {
+      path: '/home/?token=:token',
+      element: <HomePage />
+    },
+    {
       path: '/home',
       element: <HomePage />
     },

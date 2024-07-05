@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
 import { setContext } from '@apollo/client/link/context'
 import router from '../components/routes/Index'
@@ -14,10 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   }
 
-
   const uploadLink = createUploadLink({
-    // For development purpose only, make sure you change this if you don't want to run on our chosen default port
-    uri: 'http://localhost:5000/graphql',
+    uri: `${process.env.BASE_URL}/graphql`,
   })
 
   const authLink = setContext((_, { headers }) => {
@@ -30,12 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // Combine the links
   const client = new ApolloClient({
     link: authLink.concat(uploadLink),
     cache: new InMemoryCache(),
   })
-
 
   root.render(
     <ApolloProvider client={client}>

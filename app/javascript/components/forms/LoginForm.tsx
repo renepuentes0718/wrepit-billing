@@ -46,7 +46,7 @@ export default function LoginForm(): JSX.Element {
     onError: () => {
       setTimeout(() => {
         setSeverity('error')
-        setMessage('Sorry, account creation was unsuccessful')
+        setMessage('Sorry, login was unsuccessful, please try again')
       }, 20000);
     }
   })
