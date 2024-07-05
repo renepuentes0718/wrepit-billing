@@ -104,6 +104,13 @@ export const RESET_PASSWORD = gql`
     }
 `;
 
+export const SEND_VERIFICATION_CODE = gql`
+  mutation SendVerificationCode($phone: String!) {
+    sendVerificationCode(phone: $phone) {
+      success
+    }
+  }
+`;
 // TODO: after all milestone 
 // export const UPLOAD_IMAGE = gql`
 //   mutation UploadImage($image: Upload!) {

@@ -21,7 +21,7 @@ import { SignUpSchema } from '../schema'
 import Banner from '../shared/Banner'
 import Omniauth from '../shared/OmniAuth'
 import { User } from '../interface/index'
-import { REGISTER_USER } from '../api/mutations'
+import { REGISTER_USER, SEND_VERIFICATION_CODE } from '../api/mutations'
 
 const initialValues = {
   firstName: '',
@@ -38,8 +38,8 @@ export default function UserForm(): JSX.Element {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [message, setMessage] = useState('')
   const [severity, setSeverity] = useState(null)
-
-  const [mutate, { loading }] = useMutation(REGISTER_USER, {
+  const [sendVerificationCode, { data }] = useMutation(SEND_VERIFICATION_CODE)
+  const [register, { loading }] = useMutation(REGISTER_USER, {
     onCompleted: (data) => {
       if (!!data) {
         setSeverity('success')
@@ -67,7 +67,8 @@ export default function UserForm(): JSX.Element {
   }
 
   const handleSubmit = (event: User): void => {
-    mutate({
+    sendVerificationCode({ variables: { phone: event.phone } })
+    register({
       variables: {
         firstName: event.firstName,
         lastName: event.lastName,

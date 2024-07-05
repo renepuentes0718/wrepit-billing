@@ -58,14 +58,9 @@ $ http://localhost:{PORT_NUMBER}/graphiql
 ```
 Our current config default port is PORT:5000 do not forget to modify it if you choose to run on a different port
 
-#Outstanding MILESTONE TO COMPLETE
-
-
-- Omniauth integration
+### Outstanding MILESTONE TO COMPLETE
 
 - SMS verification
-
-- General application interconnetion
 
 - File upload(delayed due lack of clarity as to hoq gql deals with files)
 
