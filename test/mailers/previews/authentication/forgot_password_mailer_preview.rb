@@ -8,9 +8,7 @@ module Authentication
     include FactoryBot::Syntax::Methods
 
     def change_password_request
-      p 'hello'
       user = create(:user, :with_reset_password_token)
-      p user.inspect
       Authentication::ForgotPasswordMailer.with(user:).change_password_request
     end
   end
