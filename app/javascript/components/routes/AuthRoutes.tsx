@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import MinimalLayout from '../shared/Outlet'
 import Login from '../authentication/Login'
 import Register from '../authentication/Register'

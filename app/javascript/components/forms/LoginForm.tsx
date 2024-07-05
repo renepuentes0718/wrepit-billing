@@ -58,6 +58,7 @@ export default function LoginForm(): JSX.Element {
 
 
   const handleSubmit = (event: SignInProps) => {
+
     try {
       login({
         variables: {
@@ -66,6 +67,7 @@ export default function LoginForm(): JSX.Element {
         }
       })
     } catch (error) {
+      console.log("This is ridiculous------>>>")
     }
   }
 
