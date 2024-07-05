@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { Tabs, Tab, Box, Typography, Grid } from '@mui/material'
 import { useQuery } from '@apollo/client'
 import EditProfile from './EditProfile'
@@ -44,6 +44,10 @@ export default function ProfileWrapper(): JSX.Element {
   })
 
   const handleChange = (event: SyntheticEvent, newValue: number) => setValue(newValue)
+  // Temporary method of keeping track of user status
+  useEffect(() => {
+    // if (!loading && !data.currentUser) window.location.replace('/log_in')
+  }, [])
 
   if (loading) return <Loading />
   return (

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 export default function Loading() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', position: 'absolute', top: '50%', left: '50%' }}>
       <CircularProgress />
     </Box>
   )

@@ -46,7 +46,7 @@ export default function LoginForm(): JSX.Element {
     onError: () => {
       setTimeout(() => {
         setSeverity('error')
-        setMessage('Sorry, account creation was unsuccessful')
+        setMessage('Sorry, login was unsuccessful, please try again')
       }, 20000);
     }
   })
@@ -58,6 +58,7 @@ export default function LoginForm(): JSX.Element {
 
 
   const handleSubmit = (event: SignInProps) => {
+
     try {
       login({
         variables: {
@@ -66,6 +67,7 @@ export default function LoginForm(): JSX.Element {
         }
       })
     } catch (error) {
+      console.log(error)
     }
   }
 
@@ -162,7 +164,8 @@ export default function LoginForm(): JSX.Element {
                   type='submit'
                   variant='contained'
                   sx={{
-                    color: '#5bbff1'
+                    background: '#5bbff1',
+                    color: '#FFF'
                   }}
                 >
                   Login

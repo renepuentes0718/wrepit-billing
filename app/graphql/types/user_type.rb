@@ -23,6 +23,8 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :discarded, Boolean
     field :phone, String
+    field :provider, String
+    field :uid, String
     field :image_url, String, null: true
     field :full_name, String, null: true
 

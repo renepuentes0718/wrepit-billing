@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   post '/graphql', to: 'graphql#execute'
   root 'wrepits#index'
   match '*path', to: 'wrepits#index', via: :all
+
+  # For Omniauth authentication 
+  get "/auth/:provider/callback", to: "sessions#create" 
+  get "/auth/failure", to: redirect('/log_in')
 end

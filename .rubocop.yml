@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
-      - db/**
+      - db/migrate/*
+      - db/*
       - config/**/*
       - script/**/*
       - bin/**/*

@@ -10,9 +10,9 @@ module Mutations
         raise GraphQL::ExecutionError, 'Email not found' if user.nil?
 
         user.update(
-          reset_password_token: Jwt::Encoder.new(email:).call,
+          reset_password_token:   Jwt::Encoder.new(email:).call,
           reset_password_sent_at: Time.zone.now,
-          allow_password_change: true
+          allow_password_change:  true
         )
         ::Authentication::ForgotPasswordMailer.with(user:).change_password_request.deliver_later
         user

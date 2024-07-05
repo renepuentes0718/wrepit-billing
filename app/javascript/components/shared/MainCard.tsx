@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { useTheme } from '@mui/material/styles'
-import { Card, CardContent, CardHeader, Typography } from '@mui/material'
+import { SxProps, Card, CardContent, CardHeader, Typography } from '@mui/material'
 
 // header style
 const headerSX = {
@@ -20,7 +20,7 @@ interface Props {
   elevation?: number
   secondary?: any
   shadow?: any
-  sx?: any
+  sx?: SxProps
   title?: string
   modal?: boolean
   others?: any

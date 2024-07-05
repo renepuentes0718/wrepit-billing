@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Stack, Typography } from '@mui/material'
 import AuthWrapper from '../shared/AuthWrapper'
 import ResetPasswordForm from '../forms/ResetPasswordForm'
 
 export default function ResetPassword(): JSX.Element {
+
   return (
     <AuthWrapper>
       <Grid container spacing={3}>

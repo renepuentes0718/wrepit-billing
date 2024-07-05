@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react'
+import React, { useState, MouseEvent, useEffect } from 'react'
 import { Logout } from '@mui/icons-material'
 import { useMutation, useQuery } from '@apollo/client'
 import {
@@ -34,6 +34,11 @@ export default function AccountMenu(): JSX.Element {
   const handleClose = (): void => {
     setAnchorEl(null)
   }
+
+  // Temporary method of keeping track of user status
+  useEffect(() => {
+    // if (!loading && !data.currentUser) window.location.replace('/log_in')
+  }, [])
 
   const redirectToProfile = (): void => window.location.replace('/profile')
 
