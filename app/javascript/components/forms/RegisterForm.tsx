@@ -21,7 +21,7 @@ import { SignUpSchema } from '../schema'
 import Banner from '../shared/Banner'
 import Omniauth from '../shared/OmniAuth'
 import { User } from '../interface/index'
-import { REGISTER_USER, SEND_VERIFICATION_CODE } from '../api/mutations'
+import { REGISTER_USER } from '../api/mutations'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
@@ -40,15 +40,16 @@ export default function UserForm(): JSX.Element {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [message, setMessage] = useState('')
   const [severity, setSeverity] = useState(null)
-  const [sendVerificationCode, { data }] = useMutation(SEND_VERIFICATION_CODE)
   const [register, { loading }] = useMutation(REGISTER_USER, {
     onCompleted: (data) => {
       if (!!data) {
+        console.log("hello world 1")
         setSeverity('success')
         setMessage('Account was created successfully, a confirmation link was sent to your email')
       }
     },
     onError: () => {
+      console.log("hello world 2")
       setSeverity('error')
       setMessage('Sorry, account creation was unsuccessful')
     }
@@ -68,10 +69,7 @@ export default function UserForm(): JSX.Element {
   }
 
   const handleSubmit = (event: User): void => {
-
-    sendVerificationCode({ variables: { phone: event.phone } })
-    // on click submit  verify phone number
-    // after verification of phone number submit registration
+    console.log("hello world")
     register({
       variables: {
         firstName: event.firstName,
@@ -89,7 +87,7 @@ export default function UserForm(): JSX.Element {
       initialValues={initialValues}
       validationSchema={SignUpSchema}
     >
-      {({ errors, handleBlur, handleChange, handleSubmit, touched, values }) => (
+      {({ errors, handleBlur, handleChange, handleSubmit, touched, values, setFieldValue }) => (
         <>
           {message && <Banner severity={severity} message={message} />}
           <form noValidate onSubmit={handleSubmit}>
@@ -134,7 +132,7 @@ export default function UserForm(): JSX.Element {
                   </FormHelperText>
                 )}
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor='email'>Email Address*</InputLabel>
                   <OutlinedInput
@@ -155,14 +153,14 @@ export default function UserForm(): JSX.Element {
                   </FormHelperText>
                 )}
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor='email'>Phone*</InputLabel>
                   <PhoneInput
                     country={'us'}
                     regions={['north-america']}
                     value={values.phone}
-                    onChange={handleChange}
+                    onChange={(phone) => setFieldValue('phone', phone)}
                     containerStyle={{ flex: 1 }}
                     inputStyle={{ width: '100%', height: '56px' }}
                     onBlur={handleBlur}

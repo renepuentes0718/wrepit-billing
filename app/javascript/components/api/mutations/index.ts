@@ -105,16 +105,16 @@ export const RESET_PASSWORD = gql`
 `;
 
 export const SEND_VERIFICATION_CODE = gql`
-  mutation SendVerificationCode($phone: String!) {
-    sendVerificationCode(phone: $phone) {
+  mutation RequestOtp($phoneNumber: String!) {
+    requestOtp(input: {phoneNumber: $phoneNumber}){
       success
     }
   }
 `;
 
 export const VERIFY_CODE = gql`
-  mutation VerifyCode($phone: String!, $code: String!) {
-    verifyCode(phone: $phone, code: $code) {
+ mutation VerifyOtp($otpCode: String!) {
+    verifyOtp(input: {otpCode: $otpCode}){
       success
     }
   }
