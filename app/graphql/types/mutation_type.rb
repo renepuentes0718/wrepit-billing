@@ -3,15 +3,17 @@
 module Types
   class MutationType < Types::BaseObject
     # Authentication related mutations
-    field :register_user, Types::UserType, null: false, mutation: Mutations::Authentication::RegisterUser
-    field :signin_user, Types::UserType, null: false, mutation: Mutations::Authentication::SigninUser
-    field :confirm_user, Types::UserType, null: false, mutation: Mutations::Authentication::ConfirmUser
-    field :reset_password, Types::UserType, null: false, mutation: Mutations::Authentication::ResetPassword
-    field :forgot_password, Types::UserType, null: false, mutation: Mutations::Authentication::ForgotPassword
-    field :logout_user, Types::UserType, null: false, mutation: Mutations::Authentication::LogoutUser
+    field :register_user, Boolean, null: false, mutation: Mutations::Authentication::RegisterUser
+    field :signin_user, Boolean, null: false, mutation: Mutations::Authentication::SigninUser
+    field :confirm_user, Boolean, null: false, mutation: Mutations::Authentication::ConfirmUser
+    field :reset_password, Boolean, null: false, mutation: Mutations::Authentication::ResetPassword
+    field :forgot_password, Boolean, null: false, mutation: Mutations::Authentication::ForgotPassword
+    field :logout_user, Boolean, null: false, mutation: Mutations::Authentication::LogoutUser
+
     # Logged-in User related mutations
-    field :update_user, Types::UserType, null: false, mutation: Mutations::CurrentUser::UpdateUser
+    field :update_user, Boolean, null: false, mutation: Mutations::CurrentUser::UpdateUser
     # field :upload_image, mutation: Mutations::CurrentUser::UploadImage TODO: After all milestones
+
     # sms related mutations
     field :request_otp, Boolean, null: false, mutation: Mutations::Sms::RequestOtp
     field :verify_otp, Boolean, null: false, mutation: Mutations::Sms::VerifyOtp

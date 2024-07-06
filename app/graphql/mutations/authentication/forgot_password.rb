@@ -5,6 +5,7 @@ module Mutations
     class ForgotPassword < BaseMutation
       argument :email, String, required: true
 
+      field :success, Boolean, null: false
       def resolve(email:)
         user = User.find_by(email:)
         raise GraphQL::ExecutionError, 'Email not found' if user.nil?
@@ -15,7 +16,9 @@ module Mutations
           allow_password_change:  true
         )
         ::Authentication::ForgotPasswordMailer.with(user:).change_password_request.deliver_later
-        user
+        { success: true }
+      rescue StandardError
+        { success: false }
       end
     end
   end

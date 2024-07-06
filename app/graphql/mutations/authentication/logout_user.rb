@@ -5,13 +5,14 @@ module Mutations
   module Authentication
     class LogoutUser < BaseMutation
       argument :email, String, required: false
-
+      field :success, Boolean, null: false
       def resolve(email:)
         @current_user = nil
         context[:session].delete(:user_id)
         { email: }
+        { success: true }
       rescue StandardError
-        raise 'OOP! user could not log out'
+        { success: false }
       end
     end
   end

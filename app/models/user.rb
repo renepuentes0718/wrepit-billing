@@ -8,7 +8,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :phone, presence: true
-  validates :email, presence: true
 
   enum role: { customer: 0, admin: 1 }
   after_initialize :set_user_role, if: :new_record?

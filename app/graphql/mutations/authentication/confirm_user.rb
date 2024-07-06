@@ -5,6 +5,7 @@ module Mutations
     class ConfirmUser < BaseMutation
       argument :confirmation_token, String, required: true
 
+      field :success, Boolean, null: false
       def resolve(confirmation_token:)
         email = Jwt::Decoder.new(confirmation_token).call[:result]
 
@@ -17,7 +18,9 @@ module Mutations
           email:,
           confirmed_at: Time.zone.now
         )
-        user
+        { success: true }
+      rescue StandardError
+        { success: false }
       end
     end
   end

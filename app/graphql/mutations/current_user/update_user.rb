@@ -10,9 +10,12 @@ module Mutations
       argument :phone, String, required: false
       argument :image, String, required: false
 
+      field :success, Boolean, null: false
       def resolve(args)
         context[:current_user].update(args)
-        context[:current_user]
+        { success: true }
+      rescue StandardError
+        { success: false }
       end
     end
   end

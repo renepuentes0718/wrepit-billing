@@ -6,6 +6,7 @@ module Mutations
       argument :email, String, required: true
       argument :password, String, required: true
 
+      field :success, Boolean, null: false
       def resolve(email:, password:)
         user = User.find_by(email:)
         raise GraphQL::ExecutionError, 'Please create or confirm account' unless user
@@ -15,11 +16,12 @@ module Mutations
         if user&.authenticate(password) && !user.reached_max_attempts_limit?
           reset_login_attempt(user)
           context[:session][:user_id] = user.id
-          user
+          { success: true }
         else
           user.update!(failed_attempts: user.failed_attempts += 1)
-          raise GraphQL::ExecutionError, 'Invalid email or password'
         end
+      rescue StandardError
+        { success: false }
       end
 
       private

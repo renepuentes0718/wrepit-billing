@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 export const FORGOT_PASSWORD = gql`
   mutation ForgotPassword($email: String!) {
     forgotPassword(input: {email: $email}){
-      id
+      success
     }
   }
 `;
@@ -23,10 +23,7 @@ export const UPDATE_USER = gql`
         firstName: $firstName,
       }
     ){
-      email,
-      phone,
-      lastName,
-      firstName,
+      success
     }
   }
 `;
@@ -42,7 +39,7 @@ export const SIGNIN_USER = gql`
         password: $password,
       }
     ){
-      id
+      success
     }
   }
 `;
@@ -64,8 +61,7 @@ export const REGISTER_USER = gql`
         firstName: $firstName,
       }
     ){
-      lastName
-      firstName
+      success
     }
   }
 `;
@@ -73,7 +69,7 @@ export const REGISTER_USER = gql`
 export const LOGOUT_USER = gql`
   mutation LogoutUser($email: String!) {
     logoutUser(input: {email: $email}){
-      email
+      success
     }
   }
 `;
@@ -85,7 +81,7 @@ export const CONFIRM_USER = gql`
         confirmationToken: $confirmationToken,
       }
     ){
-      id
+      success
     }
   }
 `;
@@ -99,7 +95,7 @@ export const RESET_PASSWORD = gql`
         resetPasswordToken: $resetPasswordToken,
         password: $password
       }){
-        email
+        success
       }
     }
 `;

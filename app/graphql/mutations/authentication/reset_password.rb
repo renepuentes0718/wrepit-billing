@@ -6,6 +6,7 @@ module Mutations
       argument :reset_password_token, String, required: true
       argument :password, String, required: true
 
+      field :success, Boolean, null: false
       def resolve(reset_password_token:, password:)
         email = Jwt::Decoder.new(reset_password_token).call[:result]
 
@@ -20,7 +21,9 @@ module Mutations
           allow_password_change: false,
           failed_attempts:       0
         )
-        user
+        { success: true }
+      rescue StandardError
+        { success: false }
       end
     end
   end
