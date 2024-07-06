@@ -40,3 +40,4 @@ yarn-debug.log*
 .env
 /yarn.lock
 /Gemfile.lock
+/twilio.rb

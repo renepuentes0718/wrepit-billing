@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Formik } from 'formik'
+import React, { SetStateAction, useState } from 'react'
+import { useFormikContext } from 'formik'
 import {
   Button,
   FormHelperText,
@@ -7,92 +7,90 @@ import {
   Stack,
   TextField,
 } from '@mui/material'
-import { forgotPasswordSchema, verifyCodePhoneSchema } from '../schema'
 import Banner from '../shared/Banner'
-import { gql, useMutation } from '@apollo/client'
-import { FORGOT_PASSWORD } from '../api/mutations'
+import { useMutation } from '@apollo/client'
+import { VERIFY_CODE } from '../api/mutations'
+import { User } from '../interface'
 
-const initialValue = {
-  code: '',
-}
-interface CodeProps {
-  code: number
+interface Props {
+  // code: number
+  setIsNumberVerified: (value: SetStateAction<boolean>) => void
 }
 
-export default function VerifyCodeForm(): JSX.Element {
+export default function VerifyCodeForm({ setIsNumberVerified }: Props): JSX.Element {
+  const {
+    errors,
+    handleBlur,
+    handleChange,
+    touched,
+    values,
+  } = useFormikContext<User>()
 
   const [message, setMessage] = useState('')
   const [severity, setSeverity] = useState(null)
-
-  const [forgotPassword, { loading }] = useMutation(FORGOT_PASSWORD, {
+  const [verifyCode, { loading }] = useMutation(VERIFY_CODE, {
     onCompleted: (data) => {
       if (!!data) {
+        setIsNumberVerified(true)
         setSeverity('success')
         setMessage('Phone verification was successful')
       }
     },
     onError: () => {
+      setIsNumberVerified(false)
       setSeverity('error')
       setMessage('Sorry, phone verification was unsuccessful')
     }
   })
 
-  const handleSubmit = (event) => {
-    forgotPassword({ variables: { email: event.code } })
+  const submit = (event) => {
+    verifyCode({ variables: { email: event.code } })
   }
 
   return (
-    <Formik
-      onSubmit={handleSubmit}
-      initialValues={initialValue}
-      validationSchema={verifyCodePhoneSchema}
-    >
-      {({ errors, handleBlur, handleChange, handleSubmit, touched, values }) => (
-        <>
-          {message && <Banner severity={severity} message={message} />}
-          <br />
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Stack spacing={1}>
-                  <TextField
-                    id='code'
-                    type='number'
-                    value={values.email}
-                    name='code'
-                    placeholder='123456'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    fullWidth
-                    error={Boolean(touched.code && errors.code)}
-                  />
-                </Stack>
-                {touched.code && typeof errors.code === 'string' && (
-                  <FormHelperText error id='standard-weight-helper-text-email-forgot-Password'>
-                    {errors.code}
-                  </FormHelperText>
-                )}
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  disableElevation
-                  disabled={loading}
-                  fullWidth
-                  size='large'
-                  type='submit'
-                  variant='contained'
-                  sx={{
-                    background: '#5bbff1',
-                    color: '#FFF'
-                  }}
-                >
-                  Verify phone number
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </>
-      )}
-    </Formik>
+    <>
+      {message && <Banner severity={severity} message={message} />}
+      <br />
+      <form noValidate onSubmit={submit}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Stack spacing={1}>
+              <TextField
+                id='code'
+                type='number'
+                value={values.email}
+                name='code'
+                placeholder='123456'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                error={Boolean(touched.code && errors.code)}
+              />
+            </Stack>
+            {touched.code && typeof errors.code === 'string' && (
+              <FormHelperText error id='standard-weight-helper-code'>
+                {errors.code}
+              </FormHelperText>
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              disableElevation
+              disabled={loading}
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              sx={{
+                background: '#5bbff1',
+                color: '#FFF'
+              }}
+            >
+              Verify phone number
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </>
   )
 }

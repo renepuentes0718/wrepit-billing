@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_one :otp
   has_secure_password
   has_one_attached :image
 

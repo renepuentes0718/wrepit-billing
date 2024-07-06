@@ -111,6 +111,14 @@ export const SEND_VERIFICATION_CODE = gql`
     }
   }
 `;
+
+export const VERIFY_CODE = gql`
+  mutation VerifyCode($phone: String!, $code: String!) {
+    verifyCode(phone: $phone, code: $code) {
+      success
+    }
+  }
+`;
 // TODO: after all milestone 
 // export const UPLOAD_IMAGE = gql`
 //   mutation UploadImage($image: Upload!) {
