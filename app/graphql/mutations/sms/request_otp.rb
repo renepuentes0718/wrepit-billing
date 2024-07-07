@@ -9,9 +9,7 @@ module Mutations
         otp_service = ::Sms::OtpService.new(phone_number:)
         code = otp_service.send_otp
         expires_at = Time.current + 3.hours
-
-        context[:session][:user_id].otp.create(code:, expires_at:)
-
+        context[:session][:user_id].otp.create(code:, expires_at:) if code
         { success: true }
       rescue StandardError
         { success: false }
