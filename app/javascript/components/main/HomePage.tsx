@@ -9,11 +9,11 @@ import ContactSection from './contactSection'
 import Support from './support'
 import Footer from './footer'
 import { clearUrl, getToken } from '../utils/pathUtil'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { CONFIRM_USER } from '../api/mutations'
 import Banner from '../shared/Banner'
 import PhoneVerification from './PhoneVerification'
-import Loading from '../shared/Loading'
+
 
 // import { Amplify } from 'aws-amplify'
 // import { Authenticator } from '@aws-amplify/ui-react'
