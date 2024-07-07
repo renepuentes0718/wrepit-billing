@@ -63,7 +63,7 @@ export default function HomePage(): JSX.Element {
       <Header />
       <HeroSection />
       <FeaturesSection />
-      {<PhoneVerification />}
+      {/* {<PhoneVerification />} */}
       <Support />
       <HowItWorksSection />
       <TestimonialsSection />

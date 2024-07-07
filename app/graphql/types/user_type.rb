@@ -32,6 +32,7 @@ module Types
     def image_url
       return unless object.image.attached?
 
+      p "-------------------------<<<<<<....>>>>>> #{object.image.attached?}"
       Rails.application.routes.url_helpers.rails_blob_url(object.image,
                                                           only_path: true)
     end

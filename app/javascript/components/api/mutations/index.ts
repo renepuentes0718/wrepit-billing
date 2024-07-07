@@ -115,14 +115,11 @@ export const VERIFY_CODE = gql`
     }
   }
 `;
-// TODO: after all milestone 
-// export const UPLOAD_IMAGE = gql`
-//   mutation UploadImage($image: Upload!) {
-//     uploadImage(image: $image) {
-//       user {
-//         id
-//         imageUrl
-//       }
-//     }
-//   }
-// `;
+
+export const UPLOAD_IMAGE = gql`
+  mutation UploadImage($image: Upload!) {
+    uploadImage(input: {image: $image}){
+      imageUrl
+    }
+  }
+`;

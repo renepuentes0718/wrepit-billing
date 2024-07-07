@@ -17,6 +17,7 @@ export default function ImageUploadForm(): JSX.Element {
     handleChange,
     handleSubmit,
     values,
+    isSubmitting
   } = useFormikContext<imageProp>()
 
   return (
@@ -38,7 +39,7 @@ export default function ImageUploadForm(): JSX.Element {
         <Grid item xs={12}>
           <Button
             disableElevation
-            // disabled={loading}
+            disabled={isSubmitting}
             fullWidth
             size='large'
             type='submit'

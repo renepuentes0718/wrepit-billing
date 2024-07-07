@@ -12,7 +12,7 @@ module Types
 
     # Logged-in User related mutations
     field :update_user, Boolean, null: false, mutation: Mutations::CurrentUser::UpdateUser
-    # field :upload_image, mutation: Mutations::CurrentUser::UploadImage TODO: After all milestones
+    field :upload_image, mutation: Mutations::CurrentUser::UploadImage
 
     # sms related mutations
     field :request_otp, Boolean, null: false, mutation: Mutations::Sms::RequestOtp

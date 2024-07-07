@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import { Tabs, Tab, Box, Typography, Grid } from '@mui/material'
 import { useQuery } from '@apollo/client'
 import EditProfile from './EditProfile'
@@ -40,16 +40,13 @@ function TabPanel(props: TabPanelProps) {
 export default function ProfileWrapper(): JSX.Element {
   const [value, setValue] = useState(0)
   const { data, loading } = useQuery(CURRENT_USER, {
-    pollInterval: isProfilePage() ? 500 : 0
+    // pollInterval: isProfilePage() ? 500 : 0
   })
 
   const handleChange = (event: SyntheticEvent, newValue: number) => setValue(newValue)
-  // Temporary method of keeping track of user status
-  useEffect(() => {
-    // if (!loading && !data.currentUser) window.location.replace('/log_in')
-  }, [])
 
   if (loading) return <Loading />
+  console.log(data)
   return (
     <Box sx={{ marginTop: '100px' }}>
       <Grid container spacing={2}>
