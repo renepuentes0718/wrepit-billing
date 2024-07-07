@@ -10,7 +10,7 @@ module Sms
       @client.messages.create(
         from: ENV['TWILIO_PHONE_NUMBER'],
         to:   @phone_number,
-        body: "Your OTP code is #{otp_code}, This token will expire after 3 hours."
+        body: "Your OTP code is #{otp_code}, This token will expire after 3 hours"
       )
       otp_code
     end

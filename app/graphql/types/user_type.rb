@@ -27,6 +27,7 @@ module Types
     field :uid, String
     field :image_url, String, null: true
     field :full_name, String, null: true
+    field :verified, Boolean, null: false
 
     def image_url
       return unless object.image.attached?

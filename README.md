@@ -60,8 +60,4 @@ Our current config default port is PORT:5000 do not forget to modify it if you c
 
 ### Outstanding MILESTONE TO COMPLETE
 
-- SMS verification
-
 - File upload
-
-- Testing

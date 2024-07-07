@@ -9,6 +9,7 @@ export const CURRENT_USER = gql`
       phone
       imageUrl
       fullName
+      verified
     }
   }
 `;

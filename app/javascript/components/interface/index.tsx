@@ -11,5 +11,5 @@ export interface User {
   phone: string
   passwordConfirmation?: string
   imageUrl?: string
-  code?: string
+  verified?: boolean
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useFormikContext } from 'formik'
+import PhoneInput from 'react-phone-input-2'
 import {
   Button,
   FormHelperText,
@@ -8,9 +9,8 @@ import {
   OutlinedInput,
   Stack,
 } from '@mui/material'
-import { User } from '../interface/index'
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { User } from '../interface/index'
 
 
 export default function EditUserForm({ initialValues }): JSX.Element {
@@ -23,6 +23,7 @@ export default function EditUserForm({ initialValues }): JSX.Element {
     handleSubmit,
     touched,
     values,
+    isSubmitting
   } = useFormikContext<User>()
 
   useEffect(() => {
@@ -124,7 +125,7 @@ export default function EditUserForm({ initialValues }): JSX.Element {
           <Button
             disableElevation
             fullWidth
-            // disabled={isSU}
+            disabled={isSubmitting}
             size='large'
             type='submit'
             variant='contained'

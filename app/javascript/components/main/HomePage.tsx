@@ -9,10 +9,11 @@ import ContactSection from './contactSection'
 import Support from './support'
 import Footer from './footer'
 import { clearUrl, getToken } from '../utils/pathUtil'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { CONFIRM_USER } from '../api/mutations'
 import Banner from '../shared/Banner'
-
+import PhoneVerification from './PhoneVerification'
+import Loading from '../shared/Loading'
 
 // import { Amplify } from 'aws-amplify'
 // import { Authenticator } from '@aws-amplify/ui-react'
@@ -45,12 +46,12 @@ export default function HomePage(): JSX.Element {
         confirmationToken: getToken()
       }
     })
+    clearUrl()
   }
-
-  clearUrl()
 
   return (
     <>
+
       {message &&
         <Banner
           severity={severity}
@@ -62,6 +63,7 @@ export default function HomePage(): JSX.Element {
       <Header />
       <HeroSection />
       <FeaturesSection />
+      {<PhoneVerification />}
       <Support />
       <HowItWorksSection />
       <TestimonialsSection />
@@ -71,24 +73,3 @@ export default function HomePage(): JSX.Element {
   )
 }
 
-// import React, { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-
-// const TokenComponent = () => {
-//   const [token, setToken] = useState(null);
-//   const location = useLocation();
-
-//   useEffect(() => {
-//     const params = new URLSearchParams(location.search);
-//     const token = params.get('token');
-//     setToken(token);
-//   }, [location]);
-
-//   return (
-//     <div>
-//       {token ? <p>Token: {token}</p> : <p>No token found</p>}
-//     </div>
-//   );
-// };
-
-// export default TokenComponent;

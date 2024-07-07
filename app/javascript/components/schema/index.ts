@@ -6,7 +6,7 @@ export const SignUpSchema =
     lastName: Yup.string().max(15).required('Last Name is required'),
     phone: Yup.string().max(15).required('Phone number is required'),
     email: Yup.string().email('Must be a valid email').max(25).required('Email is required'),
-    password: Yup.string().min(5).max(55).required('Password is required'),
+    password: Yup.string().min(5, 'password is too short').max(55).required('Password is required'),
     passwordConfirmation: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password mismatch')
   })
@@ -38,7 +38,8 @@ export const forgotPasswordSchema =
     email: Yup.string().email('Must be a valid email').max(25).required('Email is required'),
   })
 
-export const verifyCodePhoneSchema =
+export const PhoneNumberVerificationSchema =
   Yup.object().shape({
     code: Yup.string().max(6).required('Verification code is required'),
   })
+
