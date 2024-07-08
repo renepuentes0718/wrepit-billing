@@ -6,7 +6,7 @@ module Mutations
       field :success, Boolean, null: false
 
       def resolve(otp_code:)
-        otp = context[:session][:user_id].otp.where(code: otp_code).last
+        otp = context[:current_user].otp.where(code: otp_code).last
         expires_at = Time.current - 2.days
 
         if otp && !otp.expired?

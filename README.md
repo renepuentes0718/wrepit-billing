@@ -57,7 +57,3 @@ Access graphiql from the endpoint
 $ http://localhost:{PORT_NUMBER}/graphiql
 ```
 Our current config default port is PORT:5000 do not forget to modify it if you choose to run on a different port
-
-### Outstanding MILESTONE TO COMPLETE
-
-- File upload

@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
-# TODO: After all milestones
+module Mutations
+  module CurrentUser
+    class UploadImage < BaseMutation
+      argument :image, ApolloUploadServer::Upload, required: true
 
-# module Mutations
-#   module CurrentUser
-#     class UploadImage < BaseMutation
-#       argument :image, String, required: true
+      field :success, Boolean, null: false
 
-#       field :user, Types::UserType, null: false
-#       p '++++++++++++++++++++++++++++++++++++++'
-#       def resolve(image)
-#         blob = ActiveStorage::Blob.create_and_upload!(
-#           io:       image,
-#           filename: 'name'
-#         )
-#         p "--------------regrets-gql----------------->>>> #{blob}"
-#         # user = context[:current_user].image.attach(io: image.to_io, filename: image.original_filename)
-#         # user.save!
-#         # { user: }
-#       end
-#     end
-#   end
-# end
+      def resolve(image:)
+        blob = ActiveStorage::Blob.create_and_upload!(
+          io:           image,
+          filename:     image.original_filename,
+          content_type: image.content_type
+        )
+        context[:current_user].image.attach(blob)
+        { success: true }
+      rescue StandardError
+        { success: false }
+      end
+    end
+  end
+end

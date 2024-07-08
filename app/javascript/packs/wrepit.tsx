@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return {
       headers: {
         ...headers,
-        'X-CSRF-Token': csrfToken
+        'X-CSRF-Token': csrfToken,
+        Accept: 'application/json'
       }
     }
   })
