@@ -8,8 +8,6 @@ import {
   Typography,
 } from '@mui/material'
 import PhoneInput from 'react-phone-input-2'
-import { useMutation } from '@apollo/client'
-import { SEND_VERIFICATION_CODE } from '../api/mutations'
 
 interface Prop {
   phone: string

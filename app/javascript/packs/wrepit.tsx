@@ -1,10 +1,9 @@
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
 import { setContext } from '@apollo/client/link/context'
-import router from '../components/routes/Index'
+import Route from '../components/routes/Index'
 
 document.addEventListener('DOMContentLoaded', () => {
   const rootElement = document.getElementById('root')
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   root.render(
     <ApolloProvider client={client}>
       <StrictMode>
-        <RouterProvider router={router} />
+        <Route />
       </StrictMode>
     </ApolloProvider>
   )

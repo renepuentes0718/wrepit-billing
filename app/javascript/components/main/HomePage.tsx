@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
 import GlobalStyles from './styles/GlobalStyles'
 import Header from './header'
 import HeroSection from './heroSection'
@@ -9,11 +10,9 @@ import ContactSection from './contactSection'
 import Support from './support'
 import Footer from './footer'
 import { clearUrl, getToken } from '../utils/pathUtil'
-import { useMutation } from '@apollo/client'
 import { CONFIRM_USER } from '../api/mutations'
 import Banner from '../shared/Banner'
-import PhoneVerification from './PhoneVerification'
-
+import PhoneVerification from '../main/PhoneVerification'
 
 // import { Amplify } from 'aws-amplify'
 // import { Authenticator } from '@aws-amplify/ui-react'
@@ -51,7 +50,6 @@ export default function HomePage(): JSX.Element {
 
   return (
     <>
-
       {message &&
         <Banner
           severity={severity}
@@ -63,12 +61,13 @@ export default function HomePage(): JSX.Element {
       <Header />
       <HeroSection />
       <FeaturesSection />
-      {<PhoneVerification />}
       <Support />
       <HowItWorksSection />
       <TestimonialsSection />
       <ContactSection />
       <Footer />
+
+      <PhoneVerification />
     </>
   )
 }

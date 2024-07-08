@@ -25,3 +25,7 @@ export const clearUrl = (): void => {
   const newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
   window.history.replaceState({ path: newUrl }, '', newUrl)
 }
+
+export const routeMiddleware = (userStatus: boolean): void => {
+  if (!userStatus) window.location.replace('log_in')
+}

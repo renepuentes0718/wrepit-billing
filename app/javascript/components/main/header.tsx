@@ -2,10 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
 import AccountMenu from './AccountMenu'
-import { isProfilePage } from '../utils/pathUtil'
-import { useMutation } from '@apollo/client'
+import { isProfilePage, routeMiddleware } from '../utils/pathUtil'
+import { useMutation, useQuery } from '@apollo/client'
 import { LOGOUT_USER } from '../api/mutations'
-import { Typography } from '@mui/material'
 
 // TODO: FIND A WORK AROUND TO DO THIS WITHOUT ARGUMENT TO RESOLVER
 const logoutEmail = 'foo@yahoo.com'

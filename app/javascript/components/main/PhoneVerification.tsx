@@ -76,7 +76,7 @@ export default function PhoneVerification(): JSX.Element {
     sendVerificationCode({ variables: { phone: data.currentUser.phone } })
   }
 
-  const verifyOtp = (event) => {
+  const verifyOtp = (event: VerificationProp) => {
     verifyCode({ variables: { email: event.code } })
   }
 
