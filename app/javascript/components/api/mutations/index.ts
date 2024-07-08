@@ -119,7 +119,7 @@ export const VERIFY_CODE = gql`
 export const UPLOAD_IMAGE = gql`
   mutation UploadImage($image: Upload!) {
     uploadImage(input: {image: $image}){
-      imageUrl
+      success
     }
   }
 `;
