@@ -404,6 +404,7 @@ DEPENDENCIES
   letter_opener
   letter_opener_web
   listen (~> 3.3)
+  mail
   mailcatcher
   material-design-rails
   omniauth
