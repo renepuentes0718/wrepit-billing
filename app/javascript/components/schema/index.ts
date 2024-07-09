@@ -5,7 +5,7 @@ export const SignUpSchema =
     firstName: Yup.string().max(15).required('First Name is required'),
     lastName: Yup.string().max(15).required('Last Name is required'),
     phone: Yup.string().max(15).required('Phone number is required'),
-    email: Yup.string().email('Must be a valid email').max(25).required('Email is required'),
+    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
     password: Yup.string().min(5, 'password is too short').max(55).required('Password is required'),
     passwordConfirmation: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password mismatch')

@@ -77,3 +77,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 gem 'rack-cors', require: 'rack/cors'
 gem 'twilio-ruby'
+
+gem 'letter_opener'
+gem 'letter_opener_web'
