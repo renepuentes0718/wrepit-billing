@@ -40,7 +40,7 @@ function TabPanel(props: TabPanelProps) {
 export default function ProfileWrapper(): JSX.Element {
   const [value, setValue] = useState(0)
   const { data, loading } = useQuery(CURRENT_USER, {
-    pollInterval: isProfilePage() ? 500 : 0
+    // pollInterval: isProfilePage() ? 500 : 0
   })
   routeMiddleware(!!data.currentUser)
   const handleChange = (event: SyntheticEvent, newValue: number) => setValue(newValue)
