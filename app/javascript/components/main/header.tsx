@@ -5,6 +5,7 @@ import AccountMenu from './AccountMenu'
 import { isProfilePage } from '../utils/pathUtil'
 import { useMutation, useQuery } from '@apollo/client'
 import { LOGOUT_USER } from '../api/mutations'
+import HomeIcon from '../shared/HomeIcon'
 
 // TODO: FIND A WORK AROUND TO DO THIS WITHOUT ARGUMENT TO RESOLVER
 const logoutEmail = 'foo@yahoo.com'
@@ -50,9 +51,13 @@ const Header = ({ showAccountMenu = false }: Prop) => {
       <img src={require('../images/logo.png')} alt='Wrepit Company Logo' />
       <Nav>
         {isProfilePage() ?
-          <NavLink onClick={() => logout(({ variables: { email: logoutEmail } }))}>
-            Logout
-          </NavLink> : (
+          <>
+            <NavLink onClick={() => window.location.replace('/')}><HomeIcon /></NavLink>
+            <NavLink onClick={() => logout(({ variables: { email: logoutEmail } }))}>
+              Logout
+            </NavLink>
+          </>
+          : (
             <>
               <NavLink to='home' smooth={true} duration={1000}>
                 Home

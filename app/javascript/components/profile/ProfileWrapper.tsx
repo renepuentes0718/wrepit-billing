@@ -8,7 +8,7 @@ import PrivacyAndSecirity from './PrivacyAndSecurity'
 import TermsAndCondition from './TermsAndConditions'
 import Loading from '../shared/Loading'
 import { CURRENT_USER } from '../api/queries'
-import { isProfilePage, routeMiddleware } from '../utils/pathUtil'
+import { isProfilePage } from '../utils/pathUtil'
 import PhoneVerification from '../main/PhoneVerification'
 
 interface TabPanelProps {
@@ -40,13 +40,12 @@ function TabPanel(props: TabPanelProps) {
 export default function ProfileWrapper(): JSX.Element {
   const [value, setValue] = useState(0)
   const { data, loading } = useQuery(CURRENT_USER, {
-    // pollInterval: isProfilePage() ? 500 : 0
+    pollInterval: isProfilePage() ? 500 : 0
   })
 
   const handleChange = (event: SyntheticEvent, newValue: number) => setValue(newValue)
 
   if (loading) return <Loading />
-  // TODO: NEED A better 
 
   return (
     <>
