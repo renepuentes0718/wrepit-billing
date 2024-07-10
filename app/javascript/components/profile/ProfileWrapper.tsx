@@ -42,7 +42,7 @@ export default function ProfileWrapper(): JSX.Element {
   const { data, loading } = useQuery(CURRENT_USER, {
     // pollInterval: isProfilePage() ? 500 : 0
   })
-  routeMiddleware(!!data.currentUser)
+
   const handleChange = (event: SyntheticEvent, newValue: number) => setValue(newValue)
 
   if (loading) return <Loading />
@@ -52,7 +52,7 @@ export default function ProfileWrapper(): JSX.Element {
     <>
       <Box sx={{ marginTop: '100px' }}>
         <Grid container spacing={2}>
-          <Header />
+          <Header showAccountMenu={!!data.currentUser} />
           <Grid
             item xs={12}
             sm={3}
@@ -89,7 +89,7 @@ export default function ProfileWrapper(): JSX.Element {
           </Grid>
         </Grid>
       </Box >
-      <PhoneVerification />
+      {!!data.currentUser && <PhoneVerification />}
     </>
   )
 }

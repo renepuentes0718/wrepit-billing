@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
 import AccountMenu from './AccountMenu'
-import { isProfilePage, routeMiddleware } from '../utils/pathUtil'
+import { isProfilePage } from '../utils/pathUtil'
 import { useMutation, useQuery } from '@apollo/client'
 import { LOGOUT_USER } from '../api/mutations'
 
@@ -39,7 +39,11 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Header = () => {
+interface Prop {
+  showAccountMenu?: boolean
+}
+
+const Header = ({ showAccountMenu = false }: Prop) => {
   const [logout] = useMutation(LOGOUT_USER, { onCompleted: () => { window.location.replace('/log_in') } })
   return (
     <HeaderContainer>
@@ -65,7 +69,7 @@ const Header = () => {
               <NavLink to='contact' smooth={true} duration={1000}>
                 Contact
               </NavLink>
-              <AccountMenu />
+              {showAccountMenu ? <AccountMenu /> : <NavLink onClick={() => window.location.replace('log_in')}>Sign In </NavLink>}
             </>
           )}
       </Nav>

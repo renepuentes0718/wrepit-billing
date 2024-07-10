@@ -73,16 +73,31 @@ Rails.application.configure do
   config.action_cable.url = 'ws://localhost:5000/cable'
   config.action_cable.disable_request_forgery_protection = true
   # email configs
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'localhost',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
-    authentication:       'plain',
+  ActionMailer::Base.smtp_settings = {
+    address: 'smtp.sendgrid.net',     
+    port: '587',
+    authentication: :plain,
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_API_KEY"],
+    domain: "http://localhost:5000",
     enable_starttls_auto: true
   }
-  config.action_mailer.delivery_method = :letter_opener
+
+  ActionMailer::Base.delivery_method = :letter_opener
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = true
+  config.action_mailer.default_url_options = { host: 'localhost:5000'}
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'localhost',
+  #   user_name:            ENV['GMAIL_USERNAME'],
+  #   password:             ENV['GMAIL_PASSWORD'],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true
+  # }
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
 end
